@@ -6,7 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import com.ecommerce.model.Order;
 
 /**
@@ -37,7 +39,25 @@ public class ViewOrderController {
             orders = orderService.getAllOrders();
         }
         model.addAttribute("orders", orders);
+        model.addAttribute("totalRevenue", calculateTotalRevenue(orders));
+        model.addAttribute("uniqueProductCount", countUniqueProducts(orders));
         model.addAttribute("pageTitle", "All Orders");
         return "view_orders";
+    }
+
+    private double calculateTotalRevenue(List<Order> orders) {
+        return orders.stream()
+            .mapToDouble(Order::getTotalValue)
+            .sum();
+    }
+
+    private int countUniqueProducts(List<Order> orders) {
+        Set<String> uniqueProducts = new LinkedHashSet<>();
+        for (Order order : orders) {
+            if (order.getProductName() != null) {
+                uniqueProducts.add(order.getProductName().trim().toLowerCase());
+            }
+        }
+        return uniqueProducts.size();
     }
 }
