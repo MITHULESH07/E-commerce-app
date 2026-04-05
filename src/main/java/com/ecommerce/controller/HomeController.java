@@ -8,6 +8,11 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "redirect:/orders";
+        return "index";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     }
 }
