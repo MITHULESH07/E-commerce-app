@@ -1,0 +1,323 @@
+/* ================================================
+   E-Commerce Order Management System - styles.css
+   ================================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    min-height: 100vh;
+}
+
+/* ── Navbar ─────────────────────────────────────── */
+.navbar {
+    background: linear-gradient(135deg, #1a73e8, #0d47a1);
+    color: white;
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.navbar-brand {
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.navbar-nav {
+    display: flex;
+    gap: 0.5rem;
+    list-style: none;
+}
+
+.navbar-nav a {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.navbar-nav a:hover {
+    background: rgba(255,255,255,0.15);
+    color: white;
+}
+
+/* ── Main Container ──────────────────────────────── */
+.container {
+    max-width: 1100px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+}
+
+/* ── Page Title ──────────────────────────────────── */
+.page-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid #1a73e8;
+    display: inline-block;
+}
+
+/* ── Card ────────────────────────────────────────── */
+.card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ── Alerts ──────────────────────────────────────── */
+.alert {
+    padding: 0.85rem 1.2rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-left: 4px solid #4caf50;
+}
+
+.alert-danger {
+    background: #fdecea;
+    color: #b71c1c;
+    border-left: 4px solid #f44336;
+}
+
+/* ── Form Styles ─────────────────────────────────── */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: #444;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.65rem 0.9rem;
+    border: 1.5px solid #ddd;
+    border-radius: 7px;
+    font-size: 0.95rem;
+    color: #333;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.form-control:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 3px rgba(26,115,232,0.15);
+}
+
+.form-control.is-invalid {
+    border-color: #e53935;
+}
+
+.invalid-feedback {
+    color: #e53935;
+    font-size: 0.82rem;
+    margin-top: 0.3rem;
+}
+
+/* ── Buttons ─────────────────────────────────────── */
+.btn {
+    padding: 0.6rem 1.4rem;
+    border: none;
+    border-radius: 7px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+    background: #1a73e8;
+    color: white;
+}
+.btn-primary:hover { background: #1557b0; box-shadow: 0 3px 10px rgba(26,115,232,0.3); }
+
+.btn-success {
+    background: #34a853;
+    color: white;
+}
+.btn-success:hover { background: #2d8f47; }
+
+.btn-warning {
+    background: #fbbc04;
+    color: #333;
+}
+.btn-warning:hover { background: #f0a500; }
+
+.btn-danger {
+    background: #ea4335;
+    color: white;
+}
+.btn-danger:hover { background: #c5221f; }
+
+.btn-secondary {
+    background: #f1f3f4;
+    color: #444;
+    border: 1px solid #ddd;
+}
+.btn-secondary:hover { background: #e2e4e6; }
+
+/* ── Table Styles ────────────────────────────────── */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 10px;
+    border: 1px solid #e8eaed;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.93rem;
+}
+
+thead {
+    background: linear-gradient(135deg, #1a73e8, #0d47a1);
+    color: white;
+}
+
+thead th {
+    padding: 0.85rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #f0f2f5;
+    transition: background 0.15s;
+}
+
+tbody tr:hover { background: #f8f9ff; }
+tbody tr:last-child { border-bottom: none; }
+
+tbody td {
+    padding: 0.85rem 1rem;
+    color: #444;
+}
+
+.badge {
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.badge-order {
+    background: #e8f0fe;
+    color: #1a73e8;
+}
+
+/* ── Search Bar ──────────────────────────────────── */
+.search-bar {
+    display: flex;
+    gap: 0.7rem;
+    margin-bottom: 1.5rem;
+    align-items: center;
+}
+
+.search-bar input {
+    flex: 1;
+    max-width: 400px;
+    padding: 0.6rem 1rem;
+    border: 1.5px solid #ddd;
+    border-radius: 7px;
+    font-size: 0.93rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.search-bar input:focus { border-color: #1a73e8; }
+
+/* ── Empty State ─────────────────────────────────── */
+.empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: #888;
+}
+
+.empty-state .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+}
+
+/* ── Action Buttons in Table ─────────────────────── */
+.action-btns {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.btn-sm {
+    padding: 0.35rem 0.8rem;
+    font-size: 0.82rem;
+    border-radius: 5px;
+}
+
+/* ── Stats Row ───────────────────────────────────── */
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border-left: 4px solid #1a73e8;
+}
+
+.stat-card .stat-label {
+    font-size: 0.82rem;
+    color: #888;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-card .stat-value {
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-top: 0.3rem;
+}
+
+.stat-card:nth-child(2) { border-left-color: #34a853; }
+.stat-card:nth-child(3) { border-left-color: #fbbc04; }
