@@ -3,16 +3,11 @@ package com.ecommerce.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 
+import java.math.BigDecimal;
+
 /**
- * JPA Entity representing an Order.
- * Maps to the 'orders' table in MySQL.
- *
- * Schema:
- *   orderid      INT          PRIMARY KEY, AUTO_INCREMENT
- *   customername VARCHAR(100) NOT NULL
- *   productname  VARCHAR(100) NOT NULL
- *   quantity     INT          NOT NULL
- *   price        DOUBLE       NOT NULL
+ * JPA entity representing an order.
+ * Money is represented with BigDecimal to avoid floating-point rounding errors.
  */
 @Entity
 @Table(name = "orders")
@@ -40,16 +35,16 @@ public class Order {
 
     @NotNull(message = "Price is required")
     @DecimalMin(value = "0.01", message = "Price must be greater than 0")
-    @Column(name = "price", nullable = false)
-    private Double price;
+    @Column(name = "price", nullable = false, precision = 12, scale = 2)
+    private BigDecimal price;
 
     public Order() {}
 
-    public Order(String customerName, String productName, Integer quantity, Double price) {
+    public Order(String customerName, String productName, Integer quantity, BigDecimal price) {
         this.customerName = customerName;
-        this.productName  = productName;
-        this.quantity     = quantity;
-        this.price        = price;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public Long getOrderId() { return orderId; }
@@ -64,17 +59,22 @@ public class Order {
     public Integer getQuantity() { return quantity; }
     public void setQuantity(Integer quantity) { this.quantity = quantity; }
 
-    public Double getPrice() { return price; }
-    public void setPrice(Double price) { this.price = price; }
+    public BigDecimal getPrice() { return price; }
+    public void setPrice(BigDecimal price) { this.price = price; }
 
-    public Double getTotalValue() {
-        return (quantity != null && price != null) ? quantity * price : 0.0;
+    public BigDecimal getTotalValue() {
+        if (quantity == null || price == null) {
+            return BigDecimal.ZERO;
+        }
+        return price.multiply(BigDecimal.valueOf(quantity));
     }
 
     @Override
     public String toString() {
-        return "Order{orderId=" + orderId + ", customerName='" + customerName +
-               "', productName='" + productName + "', quantity=" + quantity +
-               ", price=" + price + '}';
+        return "Order{orderId=" + orderId +
+                ", customerName='" + customerName + ''' +
+                ", productName='" + productName + ''' +
+                ", quantity=" + quantity +
+                ", price=" + price + '}';
     }
 }
