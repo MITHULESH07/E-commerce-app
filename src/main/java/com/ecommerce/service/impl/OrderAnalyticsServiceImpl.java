@@ -4,6 +4,7 @@ import com.ecommerce.model.Order;
 import com.ecommerce.service.OrderAnalyticsService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
@@ -13,8 +14,10 @@ import java.util.Set;
 public class OrderAnalyticsServiceImpl implements OrderAnalyticsService {
 
     @Override
-    public double calculateTotalRevenue(List<Order> orders) {
-        return orders.stream().mapToDouble(Order::getTotalValue).sum();
+    public BigDecimal calculateTotalRevenue(List<Order> orders) {
+        return orders.stream()
+                .map(Order::getTotalValue)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     @Override
